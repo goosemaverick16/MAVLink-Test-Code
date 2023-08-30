@@ -1,3 +1,6 @@
+#Nick Howard
+#8/30/2023
+# First UDP MAVLink Code for Eaglet III
 from pymavlink import mavutil
 
 #Start a UDP connection. Note, the laptop should correct directly to the TBS tracer.
