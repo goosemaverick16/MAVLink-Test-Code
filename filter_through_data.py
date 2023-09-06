@@ -14,5 +14,18 @@ print("Heartbeat from system (system %u, component %u)" %
 
 while True:
     #Lots of data will get printed beware!
-    msg = connection.recv_match(blocking=True)
+    #To parse certain aspects of telemetry, you have to specify the type, which will be seen in all caps.
+    #That is, if you print all the telemetry. 
+    msg = connection.recv_match(type = 'ATTITUDE',blocking=True)
     print(msg)
+    print("----------------------------------------------------------------------------------")
+    msg = connection.recv_match(type = 'VFR_HUD',blocking=True)
+    print(msg)
+    print("----------------------------------------------------------------------------------")
+    msg = connection.recv_match(type = 'BATTERY_STATUS',blocking=True)
+    print(msg)
+    print("----------------------------------------------------------------------------------")
+    msg = connection.recv_match(type = 'GLOBAL_POSITION_INT',blocking=True)
+    print(msg)
+    print("----------------------------------------------------------------------------------")
+  
