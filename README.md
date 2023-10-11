@@ -1,2 +1,3 @@
 # MAVLink-Test-Code
-Test code for Eaglet III and MAVLink Telemetry protocol. 
+
+This is a test code script for capturing the MAVLink telemetry data packets. It can either connect to a SIK radio or the TBS Tracer. This test code is good if you want to immediately see changing data without having to be on Mission Planner. I recommend this software be used for quick tests that do not involve the drone flying (e.g. debugging connections and sensors, testing the radios, etc.). Mission Planner should be used for telemetry capturing due to its graphing capabilities.  However, this tool can be used at anyone's convenience if they do not want to use Mission Planner. Note, I highly recommend using this Python script as the telemetry capturing software in test flights because it lacks features that Mission Planner has.
