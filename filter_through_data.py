@@ -1,7 +1,12 @@
+
+
+
 from pymavlink import mavutil
 from datetime import datetime
 import tkinter as tk
+import serial
 import os
+
 #Start a UDP connection. Note, the laptop should correct directly to the TBS tracer.
 #Don't connect with COM9 and the 915 MHz radio! I get an Error 13 Permission denied if I do this.
 #The IP Address comes from the connection IP, and the port is what I specified on TBS Agent Desktop.
@@ -24,20 +29,12 @@ if __name__ == "__main__":
     
     try:
         
-        connection = mavutil.mavlink_connection('udpin:192.168.4.2:5760')
+        connection = mavutil.mavlink_connection('COM4',baud = 57600) #Eagle III
+        #connection = mavutil.mavlink_connection('COM9',baud = 57600) #Eaglet III
+        #connection = mavutil.mavlink_connection('udpin:192.168.4.2:5760') #Eaglet III TBS Tracer Hotspot
+
         connection.mav.request_data_stream_send(connection.target_system, connection.target_component, mavutil.mavlink.MAV_DATA_STREAM_ALL, 5 ,1)
         
-        
-        '''if os.path.getsize("TelemetryData.txt") > 0:
-            window = tk.Tk()
-            warning = tk.Label(text = "Warning! Telemetry exists in the file. Rewrite file?", font = ("Roboto",24))
-            yes_button = tk.Button(window, text = "Yes", font = ("Roboto",24), command = lambda: [open_file_and_write(), window.destroy()])
-            no_button = tk.Button(window, text = "No", font = ("Roboto",24), command = lambda: [open_file_and_append(), window.destroy()])
-            warning.pack()
-            yes_button.pack()
-            no_button.pack()
-            window.mainloop()'''
-     
         file = open("TelemetryData.txt", "a")
         file.write("----------------------------------------------------------------------------------\n")
 
@@ -87,9 +84,6 @@ if __name__ == "__main__":
 
             file.close()
             
-
-        
-
     except OSError: #Handles no Address Error
     
         error_window = tk.Tk()
